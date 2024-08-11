@@ -29,3 +29,15 @@ const handleClick = () => {
 </script>
 
 <style lang="scss" scoped></style>
+<!-- if (storedUser) {
+  if (
+    (username.value === storedUser.name || username.value === storedUser.email) &&
+    password.value === storedUser.password
+  ) {
+    router.push("/");
+  } else {
+    alert("Invalid username/email or password");
+  }
+} else {
+  alert("No user found. Please register first.");
+} -->

@@ -15,6 +15,12 @@ const routes = [
         component: () => import("src/pages/SendingDataUsingPost.vue"),
       },
       { path: "/api", component: () => import("src/pages/ApiPage.vue") },
+      { path: "/login", component: () => import("src/pages/LoginPage.vue") },
+
+      {
+        path: "/register",
+        component: () => import("src/pages/RegisterPage.vue"),
+      },
     ],
   },
 

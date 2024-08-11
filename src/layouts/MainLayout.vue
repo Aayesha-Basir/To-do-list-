@@ -58,6 +58,11 @@ const data = [
     icon: icons.api,
     path: "/api",
   },
+  {
+    title: "login",
+    icon: icons.api,
+    path: "/login",
+  },
 ];
 
 function toggleLeftDrawer() {

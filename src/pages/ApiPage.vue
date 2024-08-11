@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div
     class="border tw-flex tw-justify-between tw-items-center tw-mt-10 tw-gap-14 tw-rounded-md tw-mx-60 tw-my-60"
   >
@@ -13,7 +13,7 @@
     </div>
   </div>
   <q-input
-    filled
+    filledclear
     v-model="searchQuery"
     placeholder="Search..."
     @input="onSearch"
@@ -72,4 +72,41 @@ onMounted(apiData);
 .border {
   box-shadow: 10px 5px whitesmoke;
 }
-</style>
+</style> -->
+
+<template>
+  <div>
+    <ul>
+      <li v-for="user in users" :key="user.login.uuid">
+        {{ user.name.first }} {{ user.name.last }}
+      </li>
+    </ul>
+    <button @click="fetchUsers(currentPage - 1)" :disabled="currentPage === 1">
+      Previous
+    </button>
+    <button @click="fetchUsers(currentPage + 1)">Next</button>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from "vue";
+
+const users = ref([]);
+const currentPage = ref(3);
+const resultsPerPage = 10;
+
+const fetchUsers = async (page) => {
+  if (page < 1) return;
+
+  const response = await fetch(
+    `https://randomuser.me/api/?page=${page}&results=${resultsPerPage}`
+  );
+  const data = await response.json();
+  users.value = data.results;
+  currentPage.value = page;
+};
+
+onMounted(() => {
+  fetchUsers(currentPage.value);
+});
+</script>
